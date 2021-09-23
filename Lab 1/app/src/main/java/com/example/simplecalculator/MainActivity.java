@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     TextView display;
     boolean firstTouch = true;
 
+
     double val1, val2;
 //    boolean add, sub, mul, div;
 
