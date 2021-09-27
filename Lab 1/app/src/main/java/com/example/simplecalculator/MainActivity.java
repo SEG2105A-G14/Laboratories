@@ -22,16 +22,20 @@ public class MainActivity extends AppCompatActivity {
 
     public  double getResult (double num1, double num2){
         if (optr== Operator.add){
-            return num1+num2;
+            val1 = num1+num2;
+            return val1;
         }
         else if (optr== Operator.minus){
-            return num1-num2;
+            val1 = num1-num2;
+            return val1;
         }
         else if (optr== Operator.divide){
-            return num1/num2;
+            val1 = num1/num2;
+            return val1;
         }
         else if (optr== Operator.multiply){
-            return num1*num2;
+            val1 = num1*num2;
+            return val1;
         }
         return 0;
     }
@@ -41,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             resultText = resultText.substring(0, resultText.length()-2);
         }
         return resultText;
+    }
+    public boolean  getNegativeNumber(String number) {
+        number = Double.toString(val1-Double.parseDouble(number));
+        number = trimResult(number);
+        display.setText(number);
+        firstTouch=false;
+        optr= Operator.none;
+        return true;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +84,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "0");
-                else { display.setText("0");
-                    firstTouch=false;
+                else {
+                    if (optr == Operator.minus&& val1==0 && val2==0) {
+                        getNegativeNumber("0");
+                        return;
+                    }
+                    display.setText("0");
                 }
             }
         });
@@ -82,7 +98,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "1");
-                else { display.setText("1");
+                else {
+                    if (optr == Operator.minus && val1==0&& val2==0) {
+                        getNegativeNumber("1");
+                        return;
+                    }
+                    display.setText("1");
                     firstTouch=false;
                 }
             }
@@ -92,7 +113,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "2");
-                else { display.setText("2");
+                else {
+                    if (optr == Operator.minus&& val1==0&& val2==0) {
+                        getNegativeNumber("2");
+                        return;
+                    }
+                    display.setText("2");
                     firstTouch=false;
                 }
             }
@@ -102,7 +128,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "3");
-                else { display.setText("3");
+                else {
+                    if (optr == Operator.minus&& val1==0&&val2==0) {
+                        getNegativeNumber("3");
+                        return;
+                    }
+                    display.setText("3");
                     firstTouch=false;
                 }
             }
@@ -112,7 +143,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "4");
-                else { display.setText("4");
+                else {
+                    if (optr == Operator.minus&& val1==0&&val2==0) {
+                        getNegativeNumber("4");
+                        return;
+                    }
+                    display.setText("4");
                     firstTouch=false;
                 }
             }
@@ -122,7 +158,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "5");
-                else { display.setText("5");
+                else {
+                    if (optr == Operator.minus&& val1==0&&val2==0) {
+                        getNegativeNumber("5");
+                        return;
+                    }
+                    display.setText("5");
                     firstTouch=false;
                 }
             }
@@ -131,8 +172,13 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!firstTouch) display.setText(display.getText() + "5");
-                else { display.setText("5");
+                if(!firstTouch) display.setText(display.getText() + "6");
+                else {
+                    if (optr == Operator.minus&& val1==0&&val2==0) {
+                        getNegativeNumber("6");
+                        return;
+                    }
+                    display.setText("6");
                     firstTouch=false;
                 }
             }
@@ -142,7 +188,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "7");
-                else { display.setText("7");
+                else {
+                    if (optr == Operator.minus&& val1==0&&val2==0) {
+                        getNegativeNumber("7");
+                        return;
+                    }
+                    display.setText("7");
                     firstTouch=false;
                 }
             }
@@ -152,7 +203,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "8");
-                else { display.setText("8");
+                else {
+                    if (optr == Operator.minus&&val1==0&&val2==0) {
+                        getNegativeNumber("8");
+                        return;
+                    }
+                    display.setText("8");
                     firstTouch=false;
                 }
             }
@@ -162,7 +218,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!firstTouch) display.setText(display.getText() + "9");
-                else { display.setText("9");
+                else {
+                    if (optr == Operator.minus && val1==0&&val2==0) {
+                        getNegativeNumber("9");
+                        return;
+                    }
+                    display.setText("9");
                     firstTouch=false;
                 }
             }
@@ -172,7 +233,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //The verification is to prevent user from typing two consecutive dots
-                if (display.getText().charAt(display.getText().length()-1)!='.') display.setText(display.getText() + ".");
+                if (display.getText().charAt(display.getText().length()-1)!='.' && !firstTouch) {
+                    display.setText(display.getText() + ".");
+                    firstTouch=false;
+                }
             }
         });
 
@@ -186,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 else {
-                    if (display.getText()=="") {
+                    if (display.getText()==""|| firstTouch) {
                         optr= Operator.add;
                         return;
                     }
@@ -203,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
                     display.setText(resultText);
                     val2=0;
+                    firstTouch = true;
                     optr = Operator.add;
                 }
             }
@@ -218,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 else {
-                    if (display.getText()=="") {
+                    if (display.getText()=="" || firstTouch) {
                         optr= Operator.minus;
                         return;
                     }
@@ -233,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
 
                     display.setText(resultText);
                     val2=0;
+                    firstTouch = true;
                     optr = Operator.minus;
                 }
 
@@ -250,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 else {
-                    if (display.getText()=="") {
+                    if (display.getText()==""||firstTouch) {
                         optr= Operator.divide;
                         return;
                     }
@@ -265,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
 
                     display.setText(resultText);
                     val2=0;
+                    firstTouch = true;
                     optr = Operator.divide;
                 }
 
@@ -281,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 else {
-                    if (display.getText()=="") {
+                    if (display.getText()==""||firstTouch) {
                         optr= Operator.multiply;
                         return;
                     }
@@ -296,6 +363,7 @@ public class MainActivity extends AppCompatActivity {
 
                     display.setText(resultText);
                     val2=0;
+                    firstTouch = true;
                     optr = Operator.multiply;
                 }
             }
@@ -346,6 +414,13 @@ public class MainActivity extends AppCompatActivity {
 
                     display.setText(resultText);
 
+                }
+                else
+                {
+                    double result = Double.parseDouble(display.getText().toString());
+                    val1= result;
+
+                    display.setText(trimResult(Double.toString(val1)));
                 }
                 optr = Operator.none;
                 val2 = 0;
